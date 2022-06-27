@@ -22,30 +22,27 @@ import jakarta.persistence.Table;
 @Table(name = "CONTACT")
 public class Contact {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="CONTACT_ID")
+	@Column(name = "CONTACT_ID")
 	private long id;
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "NAME_ID", referencedColumnName = "NAME_ID")
+	@JoinColumn(name = "NAME_ID", referencedColumnName = "NAME_ID")
 	private Name name;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
+	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
 	private Address address;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CONTACT_ID")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contact", fetch = FetchType.LAZY)
 	private List<Phone> phoneNumbers;
-	
+
 	@Column(name = "EMAIL")
 	private String email;
-	
+
 	public Contact() {
-		
+
 	}
 
 	public Contact(int id, Name name, Address address, ArrayList<Phone> phoneNumbers, String email) {
@@ -95,6 +92,5 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }
