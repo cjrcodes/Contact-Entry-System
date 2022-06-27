@@ -8,10 +8,12 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -35,12 +37,16 @@ public class Contact {
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
 	private Address address;
 	
-	@ElementCollection
-    @CollectionTable(name="PHONE")
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTACT_ID")
 	private List<Phone> phoneNumbers;
 	
 	@Column(name = "EMAIL")
 	private String email;
+	
+	public Contact() {
+		
+	}
 
 	public Contact(int id, Name name, Address address, ArrayList<Phone> phoneNumbers, String email) {
 		this.id = id;

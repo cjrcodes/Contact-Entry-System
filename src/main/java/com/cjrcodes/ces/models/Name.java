@@ -25,6 +25,10 @@ public class Name {
 	@Column(name= "LAST")
 	private String last;
 	
+	public Name() {
+		
+	}
+	
 	public Name(String first, String middle, String last) {
 		this.first = first;
 		this.middle = middle;

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,7 +30,15 @@ public class Address {
 	@Column(name="ZIP")
     private String zip;
     
-    
+	/*
+	 * @OneToOne(mappedBy = "address") private Contact contact;
+	 */
+	
+    public Address() {
+    	
+    }
+	
+	
 	public Address(String street, String city, String state, String zip) {
 		this.street = street;
 		this.city = city;
@@ -75,6 +85,14 @@ public class Address {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
+
+	/*
+	 * public Contact getContact() { return contact; }
+	 * 
+	 * 
+	 * public void setContact(Contact contact) { this.contact = contact; }
+	 */
     
 	
 	

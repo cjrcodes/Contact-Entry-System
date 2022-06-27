@@ -2,6 +2,7 @@ package com.cjrcodes.ces.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +29,10 @@ public class Phone {
 	@Column(name = "PHONE_TYPE")
 	private String type;
 
+	public Phone() {
+		
+	}
+	
 	public Phone(String number, String type) {
 		this.number = number;
 		this.type = type;
