@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cjrcodes.ces.models.Contact;
 import com.cjrcodes.ces.models.Phone;
 import com.cjrcodes.ces.repositories.PhoneRepository;
 
@@ -38,4 +39,13 @@ public class PhoneService {
 	public Phone getById(long id) {
 		return phoneRepository.findById(id).get();
 	}
+	
+	public Phone createPhone(Phone phone, Contact contact) {
+		
+		phone.setContact(contact);
+		System.out.println("Phone Created");
+		return this.phoneRepository.save(phone);
+	}
+	
+	
 }

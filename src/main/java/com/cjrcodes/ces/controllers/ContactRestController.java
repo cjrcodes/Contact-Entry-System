@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,6 +99,47 @@ public class ContactRestController {
 		
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateContact(@Validated @RequestBody Contact newContact, @PathVariable long id) throws ServerException {
+		
+		Optional<Contact> contact = this.contactService.getById(id);
+		if(contact.isPresent()){
+			
+			
+			/*
+			 * contact.get().setAddress(newContact.getAddress());
+			 * contact.get().setEmail(newContact.getEmail());
+			 * contact.get().setName(newContact.getName());
+			 * contact.get().setPhone(newContact.getPhone());
+			 */
+			 //newContact.setId(contact.get().getId());
+			newContact.setId(id);
+			this.contactService.updateContact(id, newContact);
+		    return ResponseEntity.ok(newContact);
+		}else {
+		    return ResponseEntity
+		            .status(HttpStatus.NOT_FOUND)
+		            .body("(Get) No contact exists with ID: " + id);
+		}
+		
+		/*
+		 * try { if(contact == null) { throw new ServerException("Contact not valid"); }
+		 * 
+		 * Contact newContact = this.contactService.createContact(contact);
+		 * 
+		 * 
+		 * return new ResponseEntity<Contact>(newContact, HttpStatus.CREATED); }
+		 * 
+		 * catch (Exception e) { return new
+		 * ResponseEntity<Contact>(HttpStatus.BAD_REQUEST);
+		 * 
+		 * }
+		 */
+		
+		
+		
+	}
+
 	
 	
 }

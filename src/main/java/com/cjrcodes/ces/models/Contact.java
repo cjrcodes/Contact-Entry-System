@@ -1,9 +1,12 @@
 package com.cjrcodes.ces.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
@@ -22,10 +25,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT")
-public class Contact {
+public class Contact implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CONTACT_ID")
 	private long id;
 
@@ -38,8 +41,16 @@ public class Contact {
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
 	private Address address;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contact", fetch = FetchType.LAZY)
-	private List<Phone> phoneNumbers =  new ArrayList<>();
+	/*
+	 * @OneToMany( mappedBy = "contact_id", cascade = CascadeType.ALL, orphanRemoval
+	 * = true )
+	 * 
+	 * @JsonManagedReference
+	 */
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTACT_ID")
+	private List<Phone> phone = new ArrayList<>();
 
 	@Column(name = "EMAIL")
 	private String email;
@@ -48,11 +59,10 @@ public class Contact {
 
 	}
 
-	public Contact(int id, Name name, Address address, ArrayList<Phone> phoneNumbers, String email) {
-		this.id = id;
+	public Contact(Name name, Address address, List<Phone> phone, String email) {
 		this.name = name;
 		this.address = address;
-		this.phoneNumbers = phoneNumbers;
+		this.phone = phone;
 		this.email = email;
 	}
 
@@ -79,13 +89,26 @@ public class Contact {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	
+	
+	public void setPhone(List<Phone> phone) {
+		//phone.forEach(p -> p.setContact(this));
+		this.phone = phone;
+	}
+	
+	/*
+	 * public void addPhone(Phone phone) { phone.setContact(this);
+	 * this.phone.add(phone); }
+	 */
+	
 
-	public List<Phone> getPhoneNumbers() {
-		return phoneNumbers;
+	public List<Phone> getPhone() {
+		return phone;
 	}
 
-	public void setPhoneNumbers(ArrayList<Phone> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
+	public void setPhoneNumbers(List<Phone> phone) {
+		this.phone = phone;
 	}
 
 	public String getEmail() {

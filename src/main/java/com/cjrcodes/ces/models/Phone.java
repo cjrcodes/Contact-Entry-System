@@ -1,5 +1,11 @@
 package com.cjrcodes.ces.models;
 
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,15 +21,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PHONE")
-public class Phone {
+public class Phone implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PHONE_ID")
+	@JsonIgnore
 	private long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "CONTACT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTACT_ID")
+    @JsonIgnore
 	private Contact contact;
 
 	@Column(name = "NUMBER")
@@ -49,13 +57,31 @@ public class Phone {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+	
+	
 
 	public String getType() {
 		return type.toString();
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
 	public void setType(PhoneType type) {
 		this.type = type;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 }
