@@ -1,7 +1,7 @@
 # Contact-Entry-System
 Sample Contact Entry System using the Spring Framework and REST APIs (Java)
 
-My developement environment: Eclipse, Windows 10, Boot Dashboard tool for Eclipse
+My development environment: Eclipse, Windows 10, Boot Dashboard tool for Eclipse
 
 Notes:
 - All functionality accessible through localhost:8080/api/contacts (or localhost:8080/api/contacts/{id} when needed) when tested locally
