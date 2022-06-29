@@ -41,7 +41,11 @@ Sample JSON input:
 "email": "harold.gilkey@yahoo.com"
 }
 
+{ "name": { "first": "Christian", "middle": "", "last": "Rodriguez" }, "address": { "street": "46 Clerk Pl", "city": "Onion", "state": "New Jersey", "zip": "07081" }, "phone": [ { "number": "908-809-7321", "type": "mobile" } ], "email": "cjrcodes@gmail.com" }
+
+{ "name": { "first": "Jonny", "middle": "", "last": "" }, "address": { "street": "1997 Greenwood Road", "city": "London", "state": "Ohio", "zip": "41232" }, "phone": [ { "number": "772-844-7613", "type": "work" } ], "email": "radioheadguitarist@protonmail.com" }
+
 TO-DO (If given extra time):
 - Unit Tests
-- Extra page functionality through a templating engine like Thymeleaf
+- Page functionality through a templating engine like Thymeleaf
 - Experimenting with different ddl modes to allow for dummy data to function with new data
