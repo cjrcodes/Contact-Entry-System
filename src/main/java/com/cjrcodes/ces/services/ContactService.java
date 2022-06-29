@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -35,9 +36,9 @@ public class ContactService {
 		return contactList;
 	}
 	
-	public Contact getById(long id) {
+	public Optional<Contact> getById(long id) {
 		try {
-			return this.contactRepository.findById(id).orElse(null);
+			return this.contactRepository.findById(id);
 		}
 		
 		catch (Exception e) {
@@ -52,5 +53,11 @@ public class ContactService {
 		catch (Exception e) {
 			throw new NoSuchElementException("No contact found with id: " + id);
 		}
+	}
+	
+	public Contact createContact(Contact contact) {
+		
+		
+		return this.contactRepository.save(contact);
 	}
 }

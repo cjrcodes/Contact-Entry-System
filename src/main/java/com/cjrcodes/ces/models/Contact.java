@@ -3,6 +3,8 @@ package com.cjrcodes.ces.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.lang.NonNull;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -29,6 +31,7 @@ public class Contact {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "NAME_ID", referencedColumnName = "NAME_ID")
+	@NonNull
 	private Name name;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -36,7 +39,7 @@ public class Contact {
 	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contact", fetch = FetchType.LAZY)
-	private List<Phone> phoneNumbers;
+	private List<Phone> phoneNumbers =  new ArrayList<>();
 
 	@Column(name = "EMAIL")
 	private String email;

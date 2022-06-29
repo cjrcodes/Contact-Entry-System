@@ -1,13 +1,17 @@
 package com.cjrcodes.ces.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +22,7 @@ import com.cjrcodes.ces.services.ContactService;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import java.rmi.ServerException;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +46,7 @@ public class ContactRestController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getContactById(@PathVariable Long id){
-		Optional<Contact> contact = Optional.of(this.contactService.getById(id));
+		Optional<Contact> contact = this.contactService.getById(id);
 		if(contact.isPresent()){
 		    return ResponseEntity.ok(contact.get());
 		}else {
@@ -69,6 +74,29 @@ public class ContactRestController {
 		}
 	 			    
     }
+	
+	@PostMapping
+	public ResponseEntity<Contact> createContact(@Validated @RequestBody Contact contact) throws ServerException {
+		
+		try {
+			if(contact == null) {
+				throw new ServerException("Contact not valid");
+			}
+
+			Contact newContact = this.contactService.createContact(contact);
+
+			
+			return new ResponseEntity<Contact>(newContact, HttpStatus.CREATED);
+		}
+		
+		catch (Exception e) {
+		    return new ResponseEntity<Contact>(HttpStatus.BAD_REQUEST);
+
+		}
+		
+		
+		
+	}
 	
 	
 	
