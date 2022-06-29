@@ -1,31 +1,27 @@
 package com.cjrcodes.ces.models;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.lang.NonNull;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT")
-public class Contact implements Serializable{
+public class Contact implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,15 +37,8 @@ public class Contact implements Serializable{
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
 	private Address address;
 
-	/*
-	 * @OneToMany( mappedBy = "contact_id", cascade = CascadeType.ALL, orphanRemoval
-	 * = true )
-	 * 
-	 * @JsonManagedReference
-	 */
-	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTACT_ID")
+	@JoinColumn(name = "CONTACT_ID")
 	private List<Phone> phone = new ArrayList<>();
 
 	@Column(name = "EMAIL")
@@ -89,19 +78,10 @@ public class Contact implements Serializable{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
-	
+
 	public void setPhone(List<Phone> phone) {
-		//phone.forEach(p -> p.setContact(this));
 		this.phone = phone;
 	}
-	
-	/*
-	 * public void addPhone(Phone phone) { phone.setContact(this);
-	 * this.phone.add(phone); }
-	 */
-	
 
 	public List<Phone> getPhone() {
 		return phone;

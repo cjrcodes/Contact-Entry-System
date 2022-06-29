@@ -3,6 +3,7 @@ package com.cjrcodes.ces.services;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,14 @@ public class PhoneService {
 
 	public Phone getById(long id) {
 		return phoneRepository.findById(id).get();
+	}
+	
+	public void deleteById(long id) {
+		try {
+			this.phoneRepository.deleteById(id);
+		} catch (Exception e) {
+			throw new NoSuchElementException("No phone found with id: " + id);
+		}
 	}
 	
 	public Phone createPhone(Phone phone, Contact contact) {

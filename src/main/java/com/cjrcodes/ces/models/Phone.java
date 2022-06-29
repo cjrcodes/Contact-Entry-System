@@ -29,7 +29,7 @@ public class Phone implements Serializable {
 	@JsonIgnore
 	private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "CONTACT_ID")
     @JsonIgnore
 	private Contact contact;
