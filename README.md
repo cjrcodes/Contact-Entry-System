@@ -50,6 +50,5 @@ Sample JSON input:
 { "name": { "first": "Van", "middle": "Jasper", "last": "" }, "address": { "street": 170 Hoppe Creek Suite 985", "city": "Balistrerimouth", "state": "Alabama", "zip": "40241-5454" }, "phone": [ { "number": "123-932-742-3453", "type": "home" } ], "email": "zerfsq1@yahoo.com" }
 
 TO-DO (If given extra time):
-- Unit Tests
 - Page functionality through a templating engine like Thymeleaf
 - Experimenting with different ddl modes to allow for dummy data to function with new data
