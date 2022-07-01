@@ -47,7 +47,7 @@ Sample JSON input:
 
 { "name": { "first": "Kathleen", "middle": "Jayme", "last": "Greenholt" }, "address": { "street": "87046 Schulist Cape", "city": "New Agnes", "state": "New Hampshire", "zip": "98065" }, "phone": [ { "number": "944-771-8001", "type": "home" } ], "email": "manlybord@protonmail.com" }
 
-{ "name": { "first": "Van", "middle": "Jasper", "last": "" }, "address": { "street": 170 Hoppe Creek Suite 985", "city": "Balistrerimouth", "state": "Alabama", "zip": "40241-5454" }, "phone": [ { "number": "123-932-742-3453", "type": "" } ], "email": "zerfsq1@yahoo.com" }
+{ "name": { "first": "Van", "middle": "Jasper", "last": "" }, "address": { "street": 170 Hoppe Creek Suite 985", "city": "Balistrerimouth", "state": "Alabama", "zip": "40241-5454" }, "phone": [ { "number": "123-932-742-3453", "type": "home" } ], "email": "zerfsq1@yahoo.com" }
 
 TO-DO (If given extra time):
 - Unit Tests
