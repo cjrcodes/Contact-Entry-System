@@ -33,12 +33,13 @@ public class Contact implements Serializable {
 	@NonNull
 	private Name name;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
 	private Address address;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "CONTACT_ID")
+
 	private List<Phone> phone = new ArrayList<>();
 
 	@Column(name = "EMAIL")
@@ -48,10 +49,9 @@ public class Contact implements Serializable {
 
 	}
 
-	public Contact(Name name, Address address, List<Phone> phone, String email) {
+	public Contact(Name name, Address address, String email) {
 		this.name = name;
 		this.address = address;
-		this.phone = phone;
 		this.email = email;
 	}
 

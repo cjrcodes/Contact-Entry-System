@@ -66,17 +66,8 @@ public class ContactService {
 
 		try {
 
+			return this.contactRepository.save(updatedContact);
 
-			
-			Contact contact = this.contactRepository.getReferenceById(id);
-			contact.setAddress(updatedContact.getAddress());
-			contact.setEmail(updatedContact.getEmail());
-			contact.setName(updatedContact.getName());
-			contact.setPhone(updatedContact.getPhone());
-
-			
-			return this.contactRepository.save(contact);
-			
 		}
 
 		catch (Exception e) {

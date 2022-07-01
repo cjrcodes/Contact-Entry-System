@@ -1,5 +1,7 @@
 package com.cjrcodes.ces.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,8 +14,9 @@ import jakarta.persistence.Table;
 public class Name {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "NAME_ID")
+	@JsonIgnore
 	private long id;
 	
 	@Column(name= "FIRST")
@@ -22,6 +25,14 @@ public class Name {
 	@Column(name= "MIDDLE")
 	private String middle;
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@Column(name= "LAST")
 	private String last;
 	
