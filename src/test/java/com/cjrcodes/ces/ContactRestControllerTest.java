@@ -191,7 +191,7 @@ public class ContactRestControllerTest {
 	  }
 	
 	  @Test
-	  void shouldDeleteTutorial() throws Exception {
+	  void testDeleteContact() throws Exception {
 	    long id = 1L;
 	    doNothing().when(contactService).deleteById(id);
 	    mockMvc.perform(delete("/api/contacts/{id}", id))
