@@ -8,6 +8,7 @@ Notes:
 - H2 Database is used
 - As the hibernate.ddl-auto is set to create-drop under application.properties, all data will have to be created manually, using a post method call (as in localhost:8080/api/contacts) a couple of times can fill the tables with some data. Changing the data in each request can help differentiate each record, but is not required. 
 - There is dummy data available for other modes (update), although some methods have trouble working in those modes, given that this is time limited, create-drop (empty database) is used and fully functional at this time.
+- Unit tests found under /ContactEntrySystem/src/test/java/com/cjrcodes/ces/ContactRestControllerTest.java
 
 Running the app:
 - Clone the project to your machine
